@@ -171,8 +171,8 @@ public class Owner extends Person {
 	public String toString() {
 		return new ToStringCreator(this)
 
-				.append("id", this.getId()).append("new", this.isNew()).append("lastName", this.getLastName())
-				.append("firstName", this.getFirstName()).append("address", this.address).append("city", this.city)
+				.append("id", this.getId()).append("new", this.isNew()).append("lastName", this.getApellidos())
+				.append("firstName", this.getNombre()).append("address", this.address).append("city", this.city)
 				.append("telephone", this.telephone).toString();
 	}
 

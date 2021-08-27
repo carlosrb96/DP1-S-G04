@@ -46,12 +46,12 @@ class VetControllerTests {
 	void setup() {
 
 		Vet james = new Vet();
-		james.setFirstName("James");
-		james.setLastName("Carter");
+		james.setNombre("James");
+		james.setApellidos("Carter");
 		james.setId(1);
 		Vet helen = new Vet();
-		helen.setFirstName("Helen");
-		helen.setLastName("Leary");
+		helen.setNombre("Helen");
+		helen.setApellidos("Leary");
 		helen.setId(2);
 		Specialty radiology = new Specialty();
 		radiology.setId(1);

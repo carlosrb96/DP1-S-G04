@@ -15,8 +15,11 @@
  */
 package org.springframework.samples.petclinic.model;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 /**
@@ -27,28 +30,62 @@ import javax.validation.constraints.NotEmpty;
 @MappedSuperclass
 public class Person extends BaseEntity {
 
-	@Column(name = "first_name")
 	@NotEmpty
-	protected String firstName;
+	protected String nombre;
 
-	@Column(name = "last_name")
 	@NotEmpty
-	protected String lastName;
+	protected String apellidos;
+	
+	@NotEmpty
+	protected String telefono;
+	
+	@NotEmpty
+	@Email
+	protected String email;
 
-	public String getFirstName() {
-		return this.firstName;
+	public String getNombre() {
+		return this.nombre;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public String getLastName() {
-		return this.lastName;
+	public String getApellidos() {
+		return this.apellidos;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "username", referencedColumnName = "username")
+	private User user;
+	
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

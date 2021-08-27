@@ -89,7 +89,7 @@ class OwnerServiceTests {
 	@Test
 	void shouldFindSingleOwnerWithPet() {
 		Owner owner = this.ownerService.findOwnerById(1);
-		assertThat(owner.getLastName()).startsWith("Franklin");
+		assertThat(owner.getApellidos()).startsWith("Franklin");
 		assertThat(owner.getPets().size()).isEqualTo(1);
 		assertThat(owner.getPets().get(0).getType()).isNotNull();
 		assertThat(owner.getPets().get(0).getType().getName()).isEqualTo("cat");
@@ -102,8 +102,8 @@ class OwnerServiceTests {
 		int found = owners.size();
 
 		Owner owner = new Owner();
-		owner.setFirstName("Sam");
-		owner.setLastName("Schultz");
+		owner.setNombre("Sam");
+		owner.setApellidos("Schultz");
 		owner.setAddress("4, Evans Street");
 		owner.setCity("Wollongong");
 		owner.setTelephone("4444444444");
@@ -124,15 +124,15 @@ class OwnerServiceTests {
 	@Transactional
 	void shouldUpdateOwner() {
 		Owner owner = this.ownerService.findOwnerById(1);
-		String oldLastName = owner.getLastName();
+		String oldLastName = owner.getApellidos();
 		String newLastName = oldLastName + "X";
 
-		owner.setLastName(newLastName);
+		owner.setApellidos(newLastName);
 		this.ownerService.saveOwner(owner);
 
 		// retrieving new name from database
 		owner = this.ownerService.findOwnerById(1);
-		assertThat(owner.getLastName()).isEqualTo(newLastName);
+		assertThat(owner.getApellidos()).isEqualTo(newLastName);
 	}
 
 
