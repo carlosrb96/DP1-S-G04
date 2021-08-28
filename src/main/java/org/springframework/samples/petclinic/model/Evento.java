@@ -17,11 +17,7 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "eventos")
 public class Evento extends BaseEntity{
@@ -50,10 +46,6 @@ public class Evento extends BaseEntity{
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "sede_id")
 	private Sede sede;
-	
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "monitor_id")
-	private Monitor monitor;
 	
 	@JoinTable(
 	        name = "rel_eventos_miembros",
@@ -103,6 +95,23 @@ public class Evento extends BaseEntity{
 
 	public void setLugar(String lugar) {
 		this.lugar = lugar;
+	}
+	
+	
+	public Sede getSede() {
+		return sede;
+	}
+	
+	public void setSede(Sede sede) {
+		this.sede = sede;
+	}
+	
+	public Set<Miembro> getAsistentes() {
+		return asistentes;
+	}
+	
+	public void setAsistentes(Set<Miembro> asistentes) {
+		this.asistentes = asistentes;
 	}
 
 

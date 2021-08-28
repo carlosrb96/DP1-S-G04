@@ -9,11 +9,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "monitores")
 public class Monitor extends Person{
@@ -28,8 +24,6 @@ public class Monitor extends Person{
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "monitor")
 	private List<Curso> cursos;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "monitor")
-	private List<Evento> eventos;
 	
 	
 	

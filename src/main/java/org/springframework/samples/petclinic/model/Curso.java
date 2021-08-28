@@ -17,11 +17,7 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 @Entity
 @Table(name="cursos")
 public class Curso extends BaseEntity{
@@ -125,5 +121,29 @@ public class Curso extends BaseEntity{
 
 	public void setNumeroMaximoInscritos(Integer numeroMaximoInscritos) {
 		this.numeroMaximoInscritos = numeroMaximoInscritos;
+	}
+	
+	public Sede getSede() {
+		return sede;
+	}
+	
+	public void setSede(Sede sede) {
+		this.sede = sede;
+	}
+	
+	public Monitor getMonitor() {
+		return monitor;
+	}
+	
+	public void setMonitor(Monitor monitor) {
+		this.monitor = monitor;
+	}
+	
+	public Set<Miembro> getInscritos() {
+		return inscritos;
+	}
+	
+	public void setInscritos(Set<Miembro> inscritos) {
+		this.inscritos = inscritos;
 	}
 }

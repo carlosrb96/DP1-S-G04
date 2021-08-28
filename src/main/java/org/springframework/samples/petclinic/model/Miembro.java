@@ -8,11 +8,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "miembros")
 public class Miembro extends Person{
@@ -46,6 +42,22 @@ public class Miembro extends Person{
 	
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
+	}
+	
+	public List<Evento> getEventos() {
+		return eventos;
+	}
+	
+	public void setEventos(List<Evento> eventos) {
+		this.eventos = eventos;
+	}
+	
+	public List<Curso> getCursos() {
+		return cursos;
+	}
+	
+	public void setCursos(List<Curso> cursos) {
+		this.cursos = cursos;
 	}
 
 }
