@@ -9,23 +9,26 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-
 @Entity
 @Table(name = "membresias")
 public class Membresia extends BaseEntity {
-	
+
 	@NotNull
 	@Column(name = "fechaSuscripcion")
 	private LocalDate fechaSuscripcion;
-	
+
 	@NotNull
 	@Column(name = "suscripcion")
 	private Suscripcion suscripcion;
-	
+
 	@NotNull
 	@Column(name = "precio")
 	private Double precio;
-	
+
+	@NotNull
+	@Column(name = "estado")
+	private Estado estado;
+
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "administrador_id")
 	private Administrador administrador;
@@ -61,9 +64,16 @@ public class Membresia extends BaseEntity {
 		}
 	}
 
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+
 	public Double getPrecio() {
 		return precio;
 	}
-
 
 }
