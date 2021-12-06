@@ -2,14 +2,10 @@ package org.springframework.samples.petclinic.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -40,6 +36,7 @@ public class Evento extends BaseEntity{
 	@DateTimeFormat(pattern = "HH:mm")
 	private LocalTime hora;
 	
+	@NotEmpty
 	@Column(name = "lugar")
 	private String lugar;
 	
@@ -47,13 +44,7 @@ public class Evento extends BaseEntity{
 	@JoinColumn(name = "sede_id")
 	private Sede sede;
 	
-	@JoinTable(
-	        name = "rel_eventos_miembros",
-	        joinColumns = @JoinColumn(name = "evento_id", nullable = false),
-	        inverseJoinColumns = @JoinColumn(name="miembro_id", nullable = false)
-	    )
-	@ManyToMany(cascade = CascadeType.ALL)
-	private Set<Miembro> asistentes;
+
 	
 	
 	
@@ -106,13 +97,6 @@ public class Evento extends BaseEntity{
 		this.sede = sede;
 	}
 	
-	public Set<Miembro> getAsistentes() {
-		return asistentes;
-	}
-	
-	public void setAsistentes(Set<Miembro> asistentes) {
-		this.asistentes = asistentes;
-	}
 
 
 }

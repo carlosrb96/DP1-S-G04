@@ -1,16 +1,12 @@
 package org.springframework.samples.petclinic.model;
 
 import java.time.LocalDate;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -31,25 +27,22 @@ public class Curso extends BaseEntity{
 	private String descripcion;
 
 	@NotNull
-	@Column(name = "fechaComienzo")
+	@Column(name = "fecha_comienzo")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate fechaComienzo;
 	
 	@NotNull
-	@Column(name = "fechaFin")
+	@Column(name = "fecha_fin")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate fechaFin;
 	
-	@Embedded
+	@OneToOne(optional = false)
+	@JoinColumn(name = "horario_id", referencedColumnName = "id")
 	private Horario horario;
 	
 	@NotNull
-	@Column(name = "numeroInscritos")
-	private Integer numeroInscritos;
-	
-	@NotNull
-	@Column(name = "numeroMaximoInscritos")
-	private Integer numeroMaximoInscritos;
+	@Column(name = "max_inscritos")
+	private Integer maxInscritos;
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "sede_id")
@@ -59,13 +52,7 @@ public class Curso extends BaseEntity{
 	@JoinColumn(name = "monitor_id")
 	private Monitor monitor;
 	
-	@JoinTable(
-	        name = "rel_cursos_miembros",
-	        joinColumns = @JoinColumn(name = "curso_id", nullable = false),
-	        inverseJoinColumns = @JoinColumn(name="miembro_id", nullable = false)
-	    )
-	@ManyToMany(cascade = CascadeType.ALL)
-	private Set<Miembro> inscritos;
+	
 
 	public String getNombre() {
 		return nombre;
@@ -107,20 +94,13 @@ public class Curso extends BaseEntity{
 		this.horario = horario;
 	}
 
-	public Integer getNumeroInscritos() {
-		return numeroInscritos;
+
+	public Integer getMaxInscritos() {
+		return maxInscritos;
 	}
 
-	public void setNumeroInscritos(Integer numeroInscritos) {
-		this.numeroInscritos = numeroInscritos;
-	}
-
-	public Integer getNumeroMaximoInscritos() {
-		return numeroMaximoInscritos;
-	}
-
-	public void setNumeroMaximoInscritos(Integer numeroMaximoInscritos) {
-		this.numeroMaximoInscritos = numeroMaximoInscritos;
+	public void setMaxInscritos(Integer maxInscritos) {
+		this.maxInscritos = maxInscritos;
 	}
 	
 	public Sede getSede() {
@@ -139,11 +119,4 @@ public class Curso extends BaseEntity{
 		this.monitor = monitor;
 	}
 	
-	public Set<Miembro> getInscritos() {
-		return inscritos;
-	}
-	
-	public void setInscritos(Set<Miembro> inscritos) {
-		this.inscritos = inscritos;
-	}
 }

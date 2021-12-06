@@ -17,7 +17,7 @@ public interface MonitorRepository extends Repository<Monitor,Integer> {
 	@Query("SELECT monitor FROM Monitor monitor WHERE monitor.id=:id")
 	public Optional<Monitor> findById(@Param("id") int id);
 	
-	@Query("SELECT * FROM Monitor")
+	@Query("SELECT m FROM Monitor m")
 	public Collection<Monitor> findAll();
 
 }

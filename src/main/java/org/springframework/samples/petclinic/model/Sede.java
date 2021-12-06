@@ -1,7 +1,7 @@
 package org.springframework.samples.petclinic.model;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Collection;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -26,21 +26,18 @@ public class Sede extends BaseEntity{
 	@Column(name = "direccion")
 	private String direccion;
 	
-	@Embedded
-	private LocalDate horario;
-	
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "administrador_id")
 	private Administrador administrador;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "sede")
-	private List<Actividad> actividades;
+	private Collection<Actividad> actividades;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "sede")
-	private List<Curso> cursos;
+	private Collection<Curso> cursos;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "sede")
-	private List<Evento> eventos;
+	private Collection<Evento> eventos;
 	
 	public String getNombre() {
 		return nombre;
@@ -57,13 +54,37 @@ public class Sede extends BaseEntity{
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	
-	public LocalDate getHorario() {
-		return horario;
+
+	public Administrador getAdministrador() {
+		return administrador;
 	}
-	
-	public void setHorario(LocalDate horario) {
-		this.horario = horario;
+
+	public void setAdministrador(Administrador administrador) {
+		this.administrador = administrador;
+	}
+
+	public Collection<Actividad> getActividades() {
+		return actividades;
+	}
+
+	public void setActividades(Collection<Actividad> actividades) {
+		this.actividades = actividades;
+	}
+
+	public Collection<Curso> getCursos() {
+		return cursos;
+	}
+
+	public void setCursos(Collection<Curso> cursos) {
+		this.cursos = cursos;
+	}
+
+	public Collection<Evento> getEventos() {
+		return eventos;
+	}
+
+	public void setEventos(Collection<Evento> eventos) {
+		this.eventos = eventos;
 	}
 
 }

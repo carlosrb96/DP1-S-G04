@@ -11,7 +11,9 @@ import org.springframework.samples.petclinic.model.Actividad;
 
 public interface ActividadRepository extends Repository<Actividad,Integer> {
 	
-	void save(Actividad actividad) throws DataAccessException;
+	
+	
+	Collection<Actividad> findAll() throws DataAccessException;
 	
 	@Query("SELECT actividad FROM Actividad actividad WHERE actividad.id=:id")
 	public Optional<Actividad> findById(@Param("id") int id);
@@ -21,5 +23,7 @@ public interface ActividadRepository extends Repository<Actividad,Integer> {
 	
 	@Query("SELECT actividad FROM Actividad actividad WHERE actividad.monitor.id=:monitorId")
 	public Collection<Actividad> findAllByMonitorId(@Param("monitorId") int monitorId);
+	
+	void save(Actividad actividad) throws DataAccessException;
 
 }

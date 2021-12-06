@@ -14,13 +14,13 @@ public interface EventoRepository extends Repository<Evento,Integer> {
 	
 	void save(Evento evento) throws DataAccessException;
 	
-	@Query("SELECT evento FROM Eventoevento WHERE evento.id=:id")
+	@Query("SELECT evento FROM Evento evento WHERE evento.id=:id")
 	public Optional<Evento> findById(@Param("id") int id);
 	
-	@Query("SELECT evento FROM Evento evento WHERE evento.sede.id =: sedeId")
+	@Query("SELECT evento FROM Evento evento WHERE evento.sede.id =:sedeId")
 	public Collection<Evento> findAllBySedeId(@Param("sedeId") int sedeId);
 	
-	@Query("SELECT evento FROM Evento evento WHERE evento.fecha >: now")
+	@Query("SELECT evento FROM Evento evento WHERE evento.fecha >:now")
 	public Collection<Evento> findAllDisponibles(@Param("now")LocalDate now);
 
 }

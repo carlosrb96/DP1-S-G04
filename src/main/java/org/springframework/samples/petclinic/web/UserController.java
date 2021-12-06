@@ -20,15 +20,14 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.petclinic.model.Owner;
-import org.springframework.samples.petclinic.service.AuthoritiesService;
-import org.springframework.samples.petclinic.service.OwnerService;
-import org.springframework.samples.petclinic.service.VetService;
-import org.springframework.samples.petclinic.service.UserService;
+import org.springframework.samples.petclinic.model.Miembro;
+import org.springframework.samples.petclinic.service.MiembroService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * @author Juergen Hoeller
@@ -39,13 +38,13 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class UserController {
 
-	private static final String VIEWS_OWNER_CREATE_FORM = "users/createOwnerForm";
+	private static final String VIEWS_MIEMBRO_CREATE_FORM = "miembros/createMiembroForm";
 
-	private final OwnerService ownerService;
+	private final MiembroService miembroService;
 
 	@Autowired
-	public UserController(OwnerService clinicService) {
-		this.ownerService = clinicService;
+	public UserController(MiembroService miembroService) {
+		this.miembroService = miembroService;
 	}
 
 	@InitBinder
@@ -55,19 +54,19 @@ public class UserController {
 
 	@GetMapping(value = "/users/new")
 	public String initCreationForm(Map<String, Object> model) {
-		Owner owner = new Owner();
+		Miembro owner = new Miembro();
 		model.put("owner", owner);
-		return VIEWS_OWNER_CREATE_FORM;
+		return VIEWS_MIEMBRO_CREATE_FORM;
 	}
 
 	@PostMapping(value = "/users/new")
-	public String processCreationForm(@Valid Owner owner, BindingResult result) {
+	public String processCreationForm(@Valid Miembro miembro, BindingResult result) {
 		if (result.hasErrors()) {
-			return VIEWS_OWNER_CREATE_FORM;
+			return VIEWS_MIEMBRO_CREATE_FORM;
 		}
 		else {
 			//creating owner, user, and authority
-			this.ownerService.saveOwner(owner);
+			this.miembroService.save(miembro);
 			return "redirect:/";
 		}
 	}

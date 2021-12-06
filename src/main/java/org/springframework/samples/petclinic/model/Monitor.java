@@ -1,34 +1,43 @@
 package org.springframework.samples.petclinic.model;
 
-import java.util.List;
+import java.util.Collection;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 
 
 @Entity
 @Table(name = "monitores")
 public class Monitor extends Person{
 
-	@NotEmpty
-	@Column(name = "dni")
-	private String dni;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "monitor")
+	private Collection<Actividad> actividades;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "monitor")
-	private List<Actividad> actividades;
+	private Collection<Curso> cursos;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "monitor")
-	private List<Curso> cursos;
-	
-	
-	
-	
-	public String getDni() {
-		return dni;
+
+	public Collection<Actividad> getActividades() {
+		return actividades;
 	}
+
+
+	public void setActividades(Collection<Actividad> actividades) {
+		this.actividades = actividades;
+	}
+
+
+	public Collection<Curso> getCursos() {
+		return cursos;
+	}
+
+
+	public void setCursos(Collection<Curso> cursos) {
+		this.cursos = cursos;
+	}
+	
+	
 	
 }
