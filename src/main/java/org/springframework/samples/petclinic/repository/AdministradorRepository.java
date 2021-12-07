@@ -12,7 +12,10 @@ public interface AdministradorRepository extends Repository<Administrador, Integ
 	
 	void save(Administrador administrador) throws DataAccessException;
 	
-	@Query("SELECT administrador FROM Administrador administrador WHERE administrador.id=:id")
+	@Query("SELECT a FROM Administrador a WHERE a.id=:id")
 	public Optional<Administrador> findById(@Param("id") int id);
+	
+	@Query("SELECT a FROM Administrador a WHERE a.user.username=:adminUserName")
+	public Administrador findByUserName(@Param("adminUserName") String directorUserName);
 
 }

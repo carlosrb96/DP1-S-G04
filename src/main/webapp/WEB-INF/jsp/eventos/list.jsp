@@ -20,7 +20,7 @@
 		<tbody>
 			<c:forEach items="${eventos}" var="evento">
 				<tr>
-					<td><a href="<c:url value="/evento/show/${evento.id}"/>"
+					<td><a href="<c:url value="/eventos/show/${evento.id}"/>"
 						class="btn btn-primary btn-block"><c:out value="${evento.nombre}"/></a></td>
 					<td><c:out value="${evento.fecha}" /></td>
 					<td><c:out value="${evento.hora}" /></td>

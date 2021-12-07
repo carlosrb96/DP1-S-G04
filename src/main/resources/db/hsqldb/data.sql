@@ -46,7 +46,7 @@ INSERT INTO monitores (id, nombre, apellidos, telefono, email, username) VALUES 
 ----------- SEDES ----------------------------
 
 INSERT INTO sedes (id, nombre, direccion, administrador_id) VALUES (1, 'GYM 1','Avenida de los Gimnasios 1',1);
-INSERT INTO sedes (id, nombre, direccion, administrador_id) VALUES (2, 'GYM 1','Avenida de los Gimnasios 2',1);
+INSERT INTO sedes (id, nombre, direccion, administrador_id) VALUES (2, 'GYM 2','Avenida de los Gimnasios 2',1);
 
 ----------- ACTIVIDADES -----------------------
 
@@ -158,4 +158,7 @@ INSERT INTO eventos(id, nombre, descripcion, fecha, hora, lugar, sede_id) VALUES
 
 ----------- CURSOS ------------------------------------------------------------
 
-INSERT INTO cursos(id, nombre, descripcion, fecha_comienzo, fecha_fin, horario_id, max_inscritos, sede_id, monitor_id) VALUES ('Curso de Mindfullnes','Es un curso para aprender a dejar la mente en blanco','2022-01-20','2022-02-20',
+INSERT INTO cursos(id, nombre, descripcion, fecha_comienzo, fecha_fin, horario_id, max_inscritos, sede_id, monitor_id) VALUES (1,'Curso de Mindfullnes','Es un curso para aprender a dejar la mente en blanco','2022-01-20','2022-02-20',55,30,1,2);
+INSERT INTO cursos(id, nombre, descripcion, fecha_comienzo, fecha_fin, horario_id, max_inscritos, sede_id, monitor_id) VALUES (2,'Curso de Artes Marciales','Es un curso para dominar las artes marciales','2022-01-20','2022-06-20',71,20,1,1);
+INSERT INTO cursos(id, nombre, descripcion, fecha_comienzo, fecha_fin, horario_id, max_inscritos, sede_id, monitor_id) VALUES (3,'Curso de Defensa Personal','Es un curso para aprender defenderte de una agresión','2022-05-20','2022-05-30',75,15,1,2);
+INSERT INTO cursos(id, nombre, descripcion, fecha_comienzo, fecha_fin, horario_id, max_inscritos, sede_id, monitor_id) VALUES (4,'Curso de Escalada','Es un curso para aprender a escalar en rocódromo','2022-01-15','2022-06-20',41,10,1,4);

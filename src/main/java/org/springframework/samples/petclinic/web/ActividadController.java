@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Actividad;
 import org.springframework.samples.petclinic.service.ActividadService;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -23,6 +25,11 @@ public class ActividadController {
 		this.actividadService = actividadService;
 	}
 	
+	@InitBinder
+	public void setAllowedFields(WebDataBinder dataBinder) {
+		dataBinder.setDisallowedFields("id");
+	}
+	
 	
 	
 	@GetMapping(value = "/list")
@@ -32,5 +39,6 @@ public class ActividadController {
 		model.put("actividades", actividades);
 		return ACTIVIDAD_LISTING;
 	}
+	
 
 }

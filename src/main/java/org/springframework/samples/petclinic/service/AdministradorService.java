@@ -13,13 +13,34 @@ public class AdministradorService {
 
 	private AdministradorRepository administradorRepository;
 	
+	private UserService userService;
+	
 	@Autowired
-	public AdministradorService(AdministradorRepository administradorRepository) {
+	public AdministradorService(AdministradorRepository administradorRepository, UserService userService) {
 		this.administradorRepository = administradorRepository;
+		this.userService = userService;
 	}
 	
 	@Transactional(readOnly = true)
 	public Optional<Administrador> findById(int id) {
 		return this.administradorRepository.findById(id);
+	}
+	
+	@Transactional(readOnly = true)
+	public Administrador findDirectorByPrincipal() {
+		Administrador result;
+		org.springframework.security.core.userdetails.User user;
+		user = userService.findPrincipal();
+		result = findAdministradorByUserName(user.getUsername());
+
+		return result;
+
+	}
+	
+	@Transactional(readOnly = true)
+	private Administrador findAdministradorByUserName(String adminUserName) {
+		Administrador result;
+		result = administradorRepository.findByUserName(adminUserName);
+		return result;
 	}
 }

@@ -23,7 +23,7 @@ public interface CursoRepository extends Repository<Curso,Integer> {
 	@Query("SELECT curso FROM Curso curso WHERE curso.monitor.id=:monitorId")
 	public Collection<Curso> findAllByMonitorId(@Param("monitorId") int monitorId);
 	
-	@Query("SELECT curso FROM Curso curso WHERE curso.fechaComienzo >: now")
+	@Query("SELECT curso FROM Curso curso WHERE curso.fechaComienzo >:now")
 	public Collection<Curso> findAllDisponibles(@Param("now")LocalDate now);
 
 }
